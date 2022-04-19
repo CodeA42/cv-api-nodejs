@@ -9,7 +9,7 @@ import WorkExperience from "../../db/Entities/WorkExperience.Entity"
 
 export default function prepCvData(req: Request, res: Response, next: NextFunction) {
     const education: Education[] = [] as Education[]
-    req.body.education.forEach((e: EducationBodyData, i: number) => {
+    req.body.education?.forEach((e: EducationBodyData, i: number) => {
         const experience: Experience = new Experience()
         experience.name = e.name
         experience.town = e.town
@@ -25,7 +25,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
     })
     
     const workExperience: WorkExperience[] = [] as WorkExperience[]
-    req.body.workExperience.forEach((e: WorkExperienceBodyData, i: number) => {
+    req.body.workExperience?.forEach((e: WorkExperienceBodyData, i: number) => {
         const experience: Experience = new Experience()
         experience.name = e.name
         experience.town = e.town
@@ -42,26 +42,28 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
     })
 
     const personalSkills: PersonalSkills[] = [] as PersonalSkills[]
-    req.body.personalSkills.forEach((e: PersonalSkillsBodyData, i: number) => {
+    req.body.personalSkills?.forEach((e: PersonalSkillsBodyData, i: number) => {
         personalSkills[i] = new PersonalSkills()
         personalSkills[i].name = e.name
         personalSkills[i].level = e.level
     })
     
-    
-    const details = new UserDetails()
-    details.address = req.body.address
-    details.town = req.body.town
-    details.country = req.body.country
-    details.phoneNumber = req.body.phoneNumber
-
     const cvData: Cv = new Cv()
+    if(req.body.address || req.body.town || req.body.country || req.body.phoneNumber){
+        const details = new UserDetails()
+        details.address = req.body.address
+        details.town = req.body.town
+        details.country = req.body.country
+        details.phoneNumber = req.body.phoneNumber
+
+        cvData.details = details
+    }
+
     cvData.color = req.body.color
     cvData.type = req.body.type
     cvData.name = req.body.name
     cvData.email = req.body.email
     cvData.user = req.body.userId
-    cvData.details = details
     cvData.education = education
     cvData.workExperience = workExperience
     cvData.personalSkills = personalSkills
