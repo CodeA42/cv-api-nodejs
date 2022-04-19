@@ -28,25 +28,26 @@ export type UserData = {
 
 export type ExperienceData = {
     id: string | undefined,
-    type: string | undefined,
     name: string | undefined,
     town: string | undefined,
     country: string | undefined,
-    startDate: string | undefined,
-    stillEngaged: string | undefined,
-    endDate: string | undefined,
+    startDate: number | undefined,
+    stillEngaged: boolean | undefined,
+    endDate: number | undefined,
     information: string | undefined
 }
 
 export type EducationData = {
     id: string | undefined,
+    type: string | undefined,
     experience: ExperienceData | undefined
 }
 
 export type WorkExperienceData = {
     id: string | undefined,
-    experience: ExperienceData | undefined,
-    jobTitle: string | undefined
+    jobTitle: string | undefined,
+    type: string | undefined,
+    experience: ExperienceData | undefined
 }
 
 export type personalSkillsData = {
@@ -66,4 +67,32 @@ export type CvData = {
     workExperience: WorkExperienceData[] | undefined,
     personalSkills: personalSkillsData[] | undefined,
 
+}
+
+export type EducationBodyData = {
+    type: string | undefined,
+    name: string | undefined,
+    town: string | undefined,
+    country: string | undefined,
+    startDate: number | undefined,
+    stillEngaged: boolean | undefined,
+    endDate: number | undefined,
+    information: string | undefined
+}
+
+export type WorkExperienceBodyData = {
+    type: string | undefined,
+    jobTitle: string | undefined,
+    name: string | undefined,
+    town: string | undefined,
+    country: string | undefined,
+    startDate: number | undefined,
+    stillEngaged: boolean | undefined,
+    endDate: number | undefined,
+    information: string | undefined
+}
+
+export type PersonalSkillsBodyData = {
+    name: string | undefined,
+    level: number | undefined
 }
