@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from "express";
 export default function authorise(getTarget: Function){
     return async (req: Request, res: Response, next: NextFunction) => {
         const target: string = await getTarget(req, res)
-
+        
         if(!target) {
             res.sendStatus(404)
         }
