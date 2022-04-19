@@ -70,6 +70,7 @@ export type CvData = {
 }
 
 export type EducationBodyData = {
+    id: string | undefined,
     type: string | undefined,
     name: string | undefined,
     town: string | undefined,
@@ -81,6 +82,7 @@ export type EducationBodyData = {
 }
 
 export type WorkExperienceBodyData = {
+    id: string | undefined,
     type: string | undefined,
     jobTitle: string | undefined,
     name: string | undefined,
@@ -93,6 +95,7 @@ export type WorkExperienceBodyData = {
 }
 
 export type PersonalSkillsBodyData = {
+    id: string | undefined,
     name: string | undefined,
     level: number | undefined
 }
