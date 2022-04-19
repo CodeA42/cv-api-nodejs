@@ -3,7 +3,7 @@ import updateCvData from "../../db/queries/cv/update";
 
 export default async function updateCv(req: Request, res: Response) {
     try{
-        await updateCvData(res.locals.userData);
+        await updateCvData(res.locals.cv, res.locals.cvData);
         return res.sendStatus(200);
     } catch(e){
         console.log(e);
