@@ -9,5 +9,4 @@ export default async function deleteUserCv(req: Request, res: Response) {
         console.error(e)
         return res.sendStatus(500)
     }
-    res.sendStatus(200)
 }
