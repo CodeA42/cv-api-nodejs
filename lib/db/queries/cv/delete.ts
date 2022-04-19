@@ -10,7 +10,7 @@ export default async function deleteCv(id: string) {
     const cv: Cv = await cvRepo.findOne({ where: { id }})
 
     const userDetailsRepo = AppDataSource.getRepository(UserDetails)
-    await userDetailsRepo.delete(cv.details.id)
+    if(cv.details?.id) await userDetailsRepo.delete(cv.details.id)
 
     const experienceRepo = AppDataSource.getRepository(Experience)
     
