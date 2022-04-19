@@ -7,7 +7,9 @@ export default class Education {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToOne(type => Cv, cv => cv.education)
+    @ManyToOne(type => Cv, cv => cv.education, {
+        onDelete: 'CASCADE'
+    })
     cv: Cv
 
     @OneToOne(type => Experience,{

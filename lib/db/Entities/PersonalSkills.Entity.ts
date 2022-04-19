@@ -6,7 +6,9 @@ export default class PersonalSkills {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToOne(type => Cv, cv => cv.personalSkills)
+    @ManyToOne(type => Cv, cv => cv.personalSkills, {
+        onDelete: 'CASCADE'
+    })
     cv: Cv
 
     @Column({
