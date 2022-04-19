@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
-import Edication from "./Education.Entity"
+import Education from "./Education.Entity"
 import PersonalSkills from "./PersonalSkills.Entity"
 import User from "./User.Entity"
 import UserDetails from "./UserDetails.Entity"
@@ -10,14 +10,16 @@ export default class Cv {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @ManyToOne(type => User, user => user.cvs)
+    @ManyToOne(type => User, user => user.cvs, {
+        eager: true
+    })
     user: User
 
-    @OneToMany(type => Edication, education => education.cv,{
+    @OneToMany(type => Education, education => education.cv,{
         cascade: true,
         eager: true
     })
-    education: Edication[]
+    education: Education[]
 
     @OneToMany(type => WorkExperience, workExperience => workExperience.cv,{
         cascade: true,
