@@ -7,7 +7,9 @@ export default class User {
     @PrimaryColumn()
     id: string
 
-    @OneToMany(type => Cv, cv => cv.user)
+    @OneToMany(type => Cv, cv => cv.user, {
+        cascade: true
+    })
     cvs: Cv[]
 
     @OneToOne(type => UserDetails, {
