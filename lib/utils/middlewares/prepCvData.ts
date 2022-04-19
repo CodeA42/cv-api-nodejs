@@ -11,7 +11,6 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
     const education: Education[] = [] as Education[]
     req.body.education?.forEach((e: EducationBodyData, i: number) => {
         const experience: Experience = new Experience()
-        experience.id = e.id
         experience.name = e.name
         experience.town = e.town
         experience.country = e.country
@@ -21,6 +20,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
         experience.information = e.information
 
         education[i] = new Education()
+        education[i].id = e.id
         education[i].type = e.type
         education[i].experience = experience
     })
@@ -28,7 +28,6 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
     const workExperience: WorkExperience[] = [] as WorkExperience[]
     req.body.workExperience?.forEach((e: WorkExperienceBodyData, i: number) => {
         const experience: Experience = new Experience()
-        experience.id = e.id
         experience.name = e.name
         experience.town = e.town
         experience.country = e.country
@@ -38,6 +37,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
         experience.information = e.information
 
         workExperience[i] = new WorkExperience()
+        workExperience[i].id = e.id
         workExperience[i].type = e.type
         workExperience[i].jobTitle = e.jobTitle
         workExperience[i].experience = experience
