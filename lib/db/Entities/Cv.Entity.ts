@@ -62,7 +62,7 @@ export default class Cv {
 
     @Column({
         type: 'text',
-        nullable: false
+        nullable: true
     })
     email: string
 }   
