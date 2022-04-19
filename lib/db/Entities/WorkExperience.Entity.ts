@@ -10,14 +10,16 @@ export default class WorkExperience {
     @ManyToOne(type => Cv, cv => cv.personalSkills)
     cv: Cv
 
-    @OneToOne(type => Experience) @JoinColumn()
+    @OneToOne(type => Experience,{
+        cascade: true,
+        eager: true
+    }) @JoinColumn()
     experience: Experience
 
     @Column({
         type: 'text',
         nullable: true
     })
-
     type: string
 
     @Column({
