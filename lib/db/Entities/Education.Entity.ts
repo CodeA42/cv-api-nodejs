@@ -3,14 +3,17 @@ import Cv from "./Cv.Entity"
 import Experience from "./Experience.Entity"
 
 @Entity()
-export default class Edication {
+export default class Education {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
     @ManyToOne(type => Cv, cv => cv.education)
     cv: Cv
 
-    @OneToOne(type => Experience) @JoinColumn()
+    @OneToOne(type => Experience,{
+        cascade: true,
+        eager: true
+    }) @JoinColumn()
     experience: Experience
 
     @Column({
