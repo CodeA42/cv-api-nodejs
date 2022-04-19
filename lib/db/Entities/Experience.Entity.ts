@@ -26,7 +26,7 @@ export default class Experience {
     country: string
 
     @Column({
-        type: 'timestamp',
+        type: 'bigint',
         nullable: false
     })
     startDate: number
@@ -37,10 +37,10 @@ export default class Experience {
     stillEngaged: boolean
 
     @Column({
-        type: 'timestamp',
+        type: 'bigint',
         nullable: true
     })
-    endDate: string
+    endDate: number
 
     @Column({
         type: 'text',
