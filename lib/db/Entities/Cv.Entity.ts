@@ -11,7 +11,6 @@ export default class Cv {
     id: string
 
     @ManyToOne(type => User, user => user.cvs, {
-        eager: true,
         onDelete: 'CASCADE'
     })
     user: User
