@@ -12,8 +12,10 @@ import fromTargetCv from "../../utils/middlewares/authorise/fromtargetCv"
 import body from "../../utils/middlewares/authorise/body"
 import deleteCv from "./delete"
 import bodyTargetCv from "../../utils/middlewares/authorise/bodyTargetCv"
+import educationRouter from "./education"
 
 const cvRouter: Router = Router()
+cvRouter.use('/education', educationRouter)
 
 cvRouter.get('/:id', authenticate(getAccessToken), authorise(fromTargetCv), getCv)
 
