@@ -27,7 +27,7 @@ export default class Experience {
 
     @Column({
         type: 'bigint',
-        nullable: false
+        nullable: true
     })
     startDate: number
 
