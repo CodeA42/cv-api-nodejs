@@ -8,6 +8,13 @@ export default async function updateWorkData(cv: Cv, cvData: Cv, queryRunner: Qu
     for(const e of cvData.workExperience){
         let workExperience = await AppDataSource.manager.findOneBy(WorkExperience, {
             id: e.id
+        }).then(data => {
+            if(data) {
+                return data
+            }
+            return new WorkExperience()
+        }).catch(err => {
+            return new WorkExperience()
         })
 
         if(!workExperience) {
@@ -29,9 +36,16 @@ export default async function updateWorkData(cv: Cv, cvData: Cv, queryRunner: Qu
 
 
         if(workExperience.id) {
-            await queryRunner.manager.save(workExperience)
+            for(let i = 0; i < cv.workExperience.length; i++){
+                if(cv.workExperience[i].id === workExperience.id){
+                    cv.workExperience[i] = workExperience
+                }
+            }
+            return queryRunner.manager.save(cv)
         } else {
             cv.workExperience.push(workExperience)
+            return queryRunner.manager.save(cv)
         }
     }
+    return cv
 }
