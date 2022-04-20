@@ -1,20 +1,11 @@
 import { Request, Response } from "express";
-import Cv from "../../../db/Entities/Cv.Entity";
-import getCvById from "../../../db/queries/cv/get";
+import User from "../../../db/Entities/User.Entity";
+import getUserIdFromCvId from "../../../db/queries/user/getUserIdByCvId";
 
-export default function bodyTargetCv(attachCv: boolean = false) {
-    return async (req: Request, res: Response): Promise<string | undefined> => {
-        if(req.body.id){
-            const cv: Cv = await getCvById(req.body.id)
-            if(cv){
-                if(attachCv){
-                    res.locals.cv = cv;
-                }
-                const owner = cv.user.id
-                return owner
-            }
-            return undefined
-        }
+export default async function bodyTargetCv(req: Request, res: Response) {
+    if(req.body.id){
+        const user: User = await getUserIdFromCvId(req.params.id)
+        if(user) return user.id
         return undefined
     }
 }
