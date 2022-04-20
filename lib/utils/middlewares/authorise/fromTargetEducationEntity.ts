@@ -5,8 +5,6 @@ import findUserIdFromEducationId from "../../../db/queries/cv/findUserIdFromEduc
 export default async function fromTargetEducationEntity(req: Request, res: Response) {
     if(req.params.id){
         const user: User = await findUserIdFromEducationId(req.params.id)
-        console.log(user);
-        
         if(user) return user.id
         return undefined
     }
