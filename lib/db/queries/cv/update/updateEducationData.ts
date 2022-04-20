@@ -8,12 +8,13 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
     for(const e of cvData.education){
         let education = await AppDataSource.manager.findOneBy(Education, {
             id: e.id
+        }).catch(err => {
+            return new Education()
         })
-
+        
         if(!education) {
             education = new Education()
         }
-        console.log(education);
         
         if(e.type) education.type = e.type
         
@@ -23,16 +24,20 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
         if(e.experience?.town)          education.experience.town = e.experience.town
         if(e.experience?.country)       education.experience.country = e.experience.country
         if(e.experience?.startDate)     education.experience.startDate = e.experience.startDate
-        if(e.experience?. stillEngaged !== undefined)  education.experience.stillEngaged = e.experience.stillEngaged
+        if(e.experience?.stillEngaged !== undefined)  education.experience.stillEngaged = e.experience.stillEngaged
         if(e.experience?.endDate)       education.experience.endDate = e.experience.endDate
         if(e.experience?.information)   education.experience.information = e.experience.information
         
         if(education.id) {
-            const result = await queryRunner.manager.save(education)
-            console.log(result)
-            console.log(cv.education);
+            for(let i = 0; i < cv.education.length; i++){
+                if(cv.education[i].id === education.id){
+                    cv.education[i] = education
+                }
+            }
+            return queryRunner.manager.save(cv)
         } else {
             cv.education.push(education)
+            return queryRunner.manager.save(cv)
         }
     }
 }
