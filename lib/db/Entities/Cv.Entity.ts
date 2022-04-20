@@ -35,7 +35,8 @@ export default class Cv {
 
     @OneToOne(type => UserDetails, {
         cascade: true,
-        eager: true
+        eager: true,
+        onDelete: 'CASCADE'
     }) @JoinColumn()
     details: UserDetails
 
