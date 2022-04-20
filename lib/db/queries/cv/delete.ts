@@ -9,20 +9,27 @@ export default async function deleteCv(id: string) {
     const cvRepo = AppDataSource.getRepository(Cv)
     const cv: Cv = await cvRepo.findOne({ where: { id }})
 
-    const userDetailsRepo = AppDataSource.getRepository(UserDetails)
-    if(cv.details?.id) await userDetailsRepo.delete(cv.details.id)
+    const queryRunner = AppDataSource.createQueryRunner()
+    await queryRunner.connect()
+    await queryRunner.startTransaction()
 
-    const experienceRepo = AppDataSource.getRepository(Experience)
+    try {
+        if(cv.details?.id) await queryRunner.manager.delete(UserDetails,{where: {id: cv.details.id}})
     
-    const education: Education[] = cv.education
-    education.forEach(async (e: Education) => {
-        await experienceRepo.delete(e.experience.id)
-    });
-
-    const workExperience: WorkExperience[] = cv.workExperience
-    workExperience.forEach(async (e: WorkExperience) => {
-        await experienceRepo.delete(e.experience.id)
-    })
-
-    await cvRepo.delete(id)
+        const education: Education[] = cv.education
+        education.forEach(async (e: Education) => {
+            await queryRunner.manager.delete(Experience, {where: {id: e.experience.id}})
+        });
+    
+        const workExperience: WorkExperience[] = cv.workExperience
+        workExperience.forEach(async (e: WorkExperience) => {
+            await queryRunner.manager.delete(Experience, {where: {id: e.experience.id}})
+        })
+    
+        await queryRunner.manager.delete(Cv, {where: {id}})
+    } catch (e) {
+        await queryRunner.rollbackTransaction()
+    } finally {
+        await queryRunner.release()
+    }    
 }
