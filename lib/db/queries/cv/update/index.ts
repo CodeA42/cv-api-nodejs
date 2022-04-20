@@ -11,11 +11,11 @@ export default async function updateCvData(cv: Cv, cvData: Cv){
     await queryRunner.startTransaction()
     
     try {
-        await updateHeaderData(cv, cvData, queryRunner)
-        await updateEducationData(cv, cvData, queryRunner)
-        await updateWorkData(cv, cvData, queryRunner)
-        await updatePersonalSkills(cv, cvData, queryRunner)
-
+        cv = await updateHeaderData(cv, cvData, queryRunner)
+        cv = await updateEducationData(cv, cvData, queryRunner)
+        cv = await updateWorkData(cv, cvData, queryRunner)
+        cv = await updatePersonalSkills(cv, cvData, queryRunner)
+        
         const result = queryRunner.manager.findOneBy(Cv, {id: cv.id})
         await queryRunner.commitTransaction()
         return result
