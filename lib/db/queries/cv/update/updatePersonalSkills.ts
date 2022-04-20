@@ -5,21 +5,35 @@ import PersonalSkills from "../../../Entities/PersonalSkills.Entity";
 
 export default async function updatePersonalSkills(cv: Cv, cvData: Cv, queryRunner: QueryRunner) {
     for(const e of cvData.personalSkills){
-        let personalSKill = await AppDataSource.manager.findOneBy(PersonalSkills, {
+        let personalSkills = await AppDataSource.manager.findOneBy(PersonalSkills, {
             id: e.id
+        }).then(data => {
+            if(data) {
+                return data
+            }
+            return new PersonalSkills()
+        }).catch(err => {
+            return new PersonalSkills()
         })
 
-        if(!personalSKill){
-            personalSKill = new PersonalSkills()
+        if(!personalSkills){
+            personalSkills = new PersonalSkills()
         }
 
-        if(e.name) personalSKill.name = e.name
-        if(e.level) personalSKill.level = e.level
+        if(e.name) personalSkills.name = e.name
+        if(e.level) personalSkills.level = e.level
 
-        if(personalSKill.id) {
-            await queryRunner.manager.save(personalSKill)
+        if(personalSkills.id) {
+            for(let i = 0; i < cv.personalSkills.length; i++){
+                if(cv.personalSkills[i].id === personalSkills.id){
+                    cv.personalSkills[i] = personalSkills
+                }
+            }
+            return queryRunner.manager.save(cv)
         } else {
-            cv.personalSkills.push(personalSKill)
+            cv.personalSkills.push(personalSkills)
+            return queryRunner.manager.save(cv)
         }
     }
+    return cv
 }
