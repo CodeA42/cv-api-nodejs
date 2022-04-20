@@ -15,14 +15,14 @@ import bodyTargetCv from "../../utils/middlewares/authorise/bodyTargetCv"
 
 const cvRouter: Router = Router()
 
-cvRouter.get('/:id', authenticate(getAccessToken), authorise(fromTargetCv(true)), getCv)
+cvRouter.get('/:id', authenticate(getAccessToken), authorise(fromTargetCv), getCv)
 
 cvRouter.post('/', authenticate(getAccessToken), authorise(body), prepCvData, createCv)
 
-cvRouter.put('/', authenticate(getAccessToken), authorise(bodyTargetCv(true)), prepCvData, updateCv)
+cvRouter.put('/', authenticate(getAccessToken), authorise(bodyTargetCv), prepCvData, updateCv)
 cvRouter.put('/image', authenticate(getAccessToken), multer.single('avatar'), authorise(body), changeImage)
 
-cvRouter.delete('/:id', authenticate(getAccessToken), authorise(fromTargetCv()), deleteCv)
+cvRouter.delete('/:id', authenticate(getAccessToken), authorise(fromTargetCv), deleteCv)
 
 cvRouter.use("*", (req: Request, res: Response) => {
     res.status(404).json(`Invalid request {${req.originalUrl}}`)
