@@ -16,9 +16,8 @@ export default async function updateCvData(cv: Cv, cvData: Cv){
         cv = await updateWorkData(cv, cvData, queryRunner)
         cv = await updatePersonalSkills(cv, cvData, queryRunner)
         
-        const result = queryRunner.manager.findOneBy(Cv, {id: cv.id})
         await queryRunner.commitTransaction()
-        return result
+        return cv
     } catch(e) {
         console.error(e);
         await queryRunner.rollbackTransaction()
