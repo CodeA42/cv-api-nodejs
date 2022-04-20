@@ -8,13 +8,14 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
     for(const e of cvData.education){
         let education = await AppDataSource.manager.findOneBy(Education, {
             id: e.id
+        }).then(data => {
+            if(data){
+                return data
+            }
+            return new Education()
         }).catch(err => {
             return new Education()
         })
-        
-        if(!education) {
-            education = new Education()
-        }
         
         if(e.type) education.type = e.type
         
@@ -40,4 +41,5 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
             return queryRunner.manager.save(cv)
         }
     }
+    return cv
 }
