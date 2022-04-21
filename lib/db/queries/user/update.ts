@@ -9,7 +9,6 @@ export default async function updateUserData(userData: UserData){
     if(userData.firstName)              user.firstName = userData.firstName
     if(userData.lastName)               user.lastName = userData.lastName
 
-    if(userData.details.avatar)         user.details.avatar = userData.details.avatar
     if(userData.details.address)        user.details.address = userData.details.address
     if(userData.details.town)           user.details.town = userData.details.town
     if(userData.details.country)        user.details.country = userData.details.country
