@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import User from "../../../db/Entities/User.Entity"
-import findUserIdFromPersonalSkillId from "../../../db/queries/cv/findUserIdFromPersonalSkillId"
+import findUserIdFromPersonalSkillId from "../../../db/queries/cv/get/findUserIdFromPersonalSkillId"
 
 export default async function fromTargetPersonalSkillEntity(req: Request, res: Response) {
     if(req.params.id){
