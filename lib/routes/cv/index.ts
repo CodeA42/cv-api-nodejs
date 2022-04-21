@@ -5,7 +5,7 @@ import multer from "../../utils/middlewares/multer"
 import prepCvData from "../../utils/middlewares/prepCvData"
 import updateCv from "./update"
 import createCv from "./create"
-import changeImage from "./image"
+import putImage from "./putImage"
 import authorise from "../../utils/middlewares/authorise"
 import getCv from "./get"
 import fromTargetCv from "../../utils/middlewares/authorise/fromtargetCv"
@@ -26,7 +26,7 @@ cvRouter.get('/:id', authenticate(getAccessToken), authorise(fromTargetCv), getC
 cvRouter.post('/', authenticate(getAccessToken), authorise(body), prepCvData, createCv)
 
 cvRouter.put('/', authenticate(getAccessToken), authorise(bodyTargetCv), prepCvData, updateCv)
-cvRouter.put('/image', authenticate(getAccessToken), multer.single('avatar'), authorise(body), changeImage)
+cvRouter.put('/image', authenticate(getAccessToken), multer.single('avatar'), authorise(body), putImage)
 
 cvRouter.delete('/:id', authenticate(getAccessToken), authorise(fromTargetCv), deleteCv)
 
