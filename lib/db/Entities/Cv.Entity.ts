@@ -65,4 +65,4 @@ export default class Cv {
         nullable: true
     })
     email: string
-}   
+}
