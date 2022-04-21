@@ -1,5 +1,5 @@
-import { AppDataSource } from "../..";
-import User from "../../Entities/User.Entity";
+import { AppDataSource } from "../../.."
+import User from "../../../Entities/User.Entity"
 
 export default async function findUserIdFromPersonalSkillId(id: string): Promise<User> {
     if(id !== undefined){
