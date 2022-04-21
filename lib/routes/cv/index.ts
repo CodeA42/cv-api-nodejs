@@ -27,7 +27,6 @@ cvRouter.post('/', authenticate(getAccessToken), authorise(body), prepCvData, cr
 
 cvRouter.put('/', authenticate(getAccessToken), authorise(bodyTargetCv), prepCvData, updateCv)
 
-
 cvRouter.delete('/:id', authenticate(getAccessToken), authorise(fromTargetCv), deleteCv)
 
 cvRouter.use("*", (req: Request, res: Response) => {
