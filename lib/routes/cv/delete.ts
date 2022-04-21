@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import deleteCv from "../../db/queries/cv/delete"
+import deleteCv from "../../db/queries/cv/delete/deleteCv"
 
 export default async function deleteUserCv(req: Request, res: Response) {
     try{
