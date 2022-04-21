@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import deleteEducationEntity from "../../../db/queries/cv/deleteEducationEntity"
+import deleteEducationEntity from "../../../db/queries/cv/delete/deleteEducationEntity"
 
 export default async function deleteEducation(req: Request, res: Response) {
     try{
