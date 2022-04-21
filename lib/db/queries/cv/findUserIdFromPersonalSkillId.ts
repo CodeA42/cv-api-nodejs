@@ -1,7 +1,7 @@
 import { AppDataSource } from "../..";
 import User from "../../Entities/User.Entity";
 
-export default async function findUserIdFromEducationId(id: string): Promise<User> {
+export default async function findUserIdFromPersonalSkillId(id: string): Promise<User> {
     if(id !== undefined){
         try{
             return await AppDataSource
