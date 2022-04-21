@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../../../db/Entities/User.Entity";
-import findUserIdFromEducationId from "../../../db/queries/cv/findUserIdFromEducationId";
+import findUserIdFromEducationId from "../../../db/queries/cv/get/findUserIdFromEducationId";
 
 export default async function fromTargetEducationEntity(req: Request, res: Response) {
     if(req.params.id){
