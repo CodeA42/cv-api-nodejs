@@ -12,7 +12,6 @@ export default async function updateHeaderData(cv: Cv, cvData: Cv, queryRunner: 
         cv.details = new UserDetails()
     }
     if(cvData.details) {
-        if(cvData.details.avatar) cv.details.avatar = cvData.details.avatar
         if(cvData.details.address) cv.details.address = cvData.details.address
         if(cvData.details.town) cv.details.town = cvData.details.town
         if(cvData.details.country) cv.details.country = cvData.details.country
