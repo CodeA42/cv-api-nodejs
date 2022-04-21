@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import deleteWorkExperienceEntity from "../../../db/queries/cv/deleteWorkExperienceEntity"
+import deleteWorkExperienceEntity from "../../../db/queries/cv/delete/deleteWorkExperienceEntity"
 
 export default async function deleteWorkExperience(req: Request, res: Response) {
     try{
