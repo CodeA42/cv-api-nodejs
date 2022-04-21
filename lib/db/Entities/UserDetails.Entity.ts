@@ -21,7 +21,8 @@ export default class UserDetails {
     cv: Cv
 
     @OneToOne(type => Image, {
-        cascade: true
+        cascade: true,
+        onDelete: 'CASCADE'
     }) @JoinColumn()
     image: Image
 
