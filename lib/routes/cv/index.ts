@@ -14,10 +14,12 @@ import deleteCv from "./delete"
 import bodyTargetCv from "../../utils/middlewares/authorise/bodyTargetCv"
 import educationRouter from "./education"
 import workExpericenceRouter from "./workExperience"
+import personalSkillsRouter from "./personalSkills"
 
 const cvRouter: Router = Router()
 cvRouter.use('/education', educationRouter)
 cvRouter.use('/work-experience', workExpericenceRouter)
+cvRouter.use('/personal-skill', personalSkillsRouter)
 
 cvRouter.get('/:id', authenticate(getAccessToken), authorise(fromTargetCv), getCv)
 
