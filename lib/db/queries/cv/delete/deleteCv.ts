@@ -1,9 +1,9 @@
-import { AppDataSource } from "../.."
-import Cv from "../../Entities/Cv.Entity"
-import Education from "../../Entities/Education.Entity"
-import Experience from "../../Entities/Experience.Entity"
-import UserDetails from "../../Entities/UserDetails.Entity"
-import WorkExperience from "../../Entities/WorkExperience.Entity"
+import { AppDataSource } from "../../.."
+import Cv from "../../../Entities/Cv.Entity"
+import Education from "../../../Entities/Education.Entity"
+import Experience from "../../../Entities/Experience.Entity"
+import UserDetails from "../../../Entities/UserDetails.Entity"
+import WorkExperience from "../../../Entities/WorkExperience.Entity"
 
 export default async function deleteCv(id: string) {
     const cvRepo = AppDataSource.getRepository(Cv)
