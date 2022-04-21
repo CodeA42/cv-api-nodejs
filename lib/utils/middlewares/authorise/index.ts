@@ -7,7 +7,7 @@ export default function authorise(getTarget: Function){
         const target: string = await getTarget(req, res)
         
         if(!target) {
-            return res.status(404).json('user not found')
+            return res.status(401).json('user not found')
         }
 
         if(target !== res.locals.user.id){
