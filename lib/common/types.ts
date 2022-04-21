@@ -11,8 +11,13 @@ export type DecodedToken = {
     exp: number
 }
 
+export type Image = {
+    id: string | undefined,
+    avatar: string | undefined
+}
+
 export type UserDetails = {
-    avatar: string | undefined,
+    image: Image | undefined,
     address: string | undefined,
     town: string | undefined,
     country: string | undefined,
