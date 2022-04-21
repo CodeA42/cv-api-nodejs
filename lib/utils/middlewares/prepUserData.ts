@@ -9,7 +9,7 @@ export default function prepUserData(req: Request, res: Response, next: NextFunc
     userData.lastName = req.body.lastName;
 
     userData.details = new UserDetails();
-    userData.details.avatar = req.files[0].filename;
+    userData.details.image.avatar = req.files[0].filename;
     userData.details.address = req.body.address;
     userData.details.town = req.body.town;
     userData.details.country = req.body.country;
