@@ -1,10 +1,12 @@
 import { AppDataSource } from "../../.."
+import MssingWorkExperienceId from "../../../../error/MssingWorkExperienceId"
+import WorkExperienceOrUserNotFound from "../../../../error/WorkExperienceOrUserNotFound"
 import User from "../../../Entities/User.Entity"
 
 export default async function findUserIdFromWorkExperienceId(id: string): Promise<User> {
-    if(id !== undefined){
+    if(id){
         try{
-            return await AppDataSource
+            const user: User = await AppDataSource
             .manager
             .createQueryBuilder()
             .select("user.id")
@@ -13,10 +15,11 @@ export default async function findUserIdFromWorkExperienceId(id: string): Promis
             .leftJoin("cv.workExperience","workExperience")
             .where("workExperience.id = :id", {id})
             .getOne()
+            if(user) return user
+            throw new WorkExperienceOrUserNotFound("Work experience or user not found")
         } catch(e) {
             console.error(e)
-            return undefined
         }
     }
-    return undefined
+    throw new MssingWorkExperienceId("Missing work experience id")
 }
