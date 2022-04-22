@@ -16,5 +16,5 @@ export default async function bodyTargetCv(req: Request, res: Response) {
         }
         return undefined
     }
-    throw new MissingCvIdError("Missing cv id")
+    throw new MissingCvIdError(MissingCvIdError.defaultMessage)
 }
