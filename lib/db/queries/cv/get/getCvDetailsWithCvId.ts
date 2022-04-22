@@ -21,7 +21,6 @@ export default async function getCvDetailsWithCvId(id: String): Promise<UserDeta
             console.error(e);
             return null
         }
-
     }
     throw new MissingCvIdError(MissingCvIdError.defaultMessage)
 
