@@ -16,5 +16,5 @@ export default async function fromTargetImage(req: Request, res: Response) {
         }
         return undefined
     }
-    throw new MissingImageIdError("Missing image id")
+    throw new MissingImageIdError(MissingImageIdError.defaultMessage)
 }
