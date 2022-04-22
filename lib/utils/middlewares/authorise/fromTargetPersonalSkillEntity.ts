@@ -16,5 +16,5 @@ export default async function fromTargetPersonalSkillEntity(req: Request, res: R
         }
         return undefined
     }
-    throw new MissingPersonalSkillIdError("Missing personal skill id")
+    throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
 }
