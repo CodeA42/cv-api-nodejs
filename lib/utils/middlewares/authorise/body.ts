@@ -5,5 +5,5 @@ export default function body(req: Request) {
     if(req.body.userId) {
         return req.body.userId;
     }
-    throw new MissingUserIdError("Missign user id")
+    throw new MissingUserIdError(MissingUserIdError.defaultMessage)
 }
