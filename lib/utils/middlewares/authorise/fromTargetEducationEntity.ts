@@ -16,5 +16,5 @@ export default async function fromTargetEducationEntity(req: Request, res: Respo
         }
         return undefined
     }
-    throw new MissingEducationId("Missing education id");
+    throw new MissingEducationId(MissingEducationId.defaultMessage);
 }
