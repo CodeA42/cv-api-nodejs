@@ -1,9 +1,9 @@
 import { AppDataSource } from "../../.."
-import MssingWorkExperienceId from "../../../../error/MssingWorkExperienceId"
+import MissingWorkExperienceId from "../../../../error/MissingWorkExperienceId"
 import WorkExperienceOrUserNotFound from "../../../../error/WorkExperienceOrUserNotFound"
 import User from "../../../Entities/User.Entity"
 
-export default async function findUserIdFromWorkExperienceId(id: string): Promise<User> {
+export default async function findUserIdFromWorkExperienceId(id: string): Promise<User | null> {
     if(id){
         try{
             const user: User = await AppDataSource
@@ -16,10 +16,11 @@ export default async function findUserIdFromWorkExperienceId(id: string): Promis
             .where("workExperience.id = :id", {id})
             .getOne()
             if(user) return user
-            throw new WorkExperienceOrUserNotFound("Work experience or user not found")
+            throw new WorkExperienceOrUserNotFound(WorkExperienceOrUserNotFound.defaultMessage)
         } catch(e) {
             console.error(e)
+            return null
         }
     }
-    throw new MssingWorkExperienceId("Missing work experience id")
+    throw new MissingWorkExperienceId(MissingWorkExperienceId.defaultMessage)
 }
