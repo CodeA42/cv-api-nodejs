@@ -3,7 +3,7 @@ import ImageOrUserNotFoundError from "../../../../error/ImageOrUserNotFoundError
 import MissingImageIdError from "../../../../error/MissingImageIdError";
 import User from "../../../Entities/User.Entity";
 
-export default async function findUserIdFromImageId(id: string): Promise<User> {
+export default async function findUserIdFromImageId(id: string): Promise<User | null> {
     if(id) {
         try{
             const user: User = await AppDataSource
@@ -17,10 +17,11 @@ export default async function findUserIdFromImageId(id: string): Promise<User> {
             .where("image.id = :id", { id })
             .getOne()
             if(user) return user
-            throw new ImageOrUserNotFoundError("Image or user not found")
+            throw new ImageOrUserNotFoundError(ImageOrUserNotFoundError.defaultMessage)
         } catch(e) {
             console.error(e);
+            return null
         }
     }
-    throw new MissingImageIdError("Missing image id")
+    throw new MissingImageIdError(MissingImageIdError.defaultMessage)
 }
