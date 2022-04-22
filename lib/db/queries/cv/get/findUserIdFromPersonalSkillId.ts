@@ -1,10 +1,12 @@
 import { AppDataSource } from "../../.."
+import MissingPersonalSkillIdError from "../../../../error/MissingPersonalSkillIdError"
+import PersonalSkillOrUserNotFoundError from "../../../../error/PersonalSkillOrUserNotFoundError"
 import User from "../../../Entities/User.Entity"
 
-export default async function findUserIdFromPersonalSkillId(id: string): Promise<User> {
-    if(id !== undefined){
+export default async function findUserIdFromPersonalSkillId(id: string): Promise<User | null> {
+    if(id){
         try{
-            return await AppDataSource
+            const user = await AppDataSource
             .manager
             .createQueryBuilder()
             .select("user.id")
@@ -13,10 +15,12 @@ export default async function findUserIdFromPersonalSkillId(id: string): Promise
             .leftJoin("cv.personalSkills","personalSkills")
             .where("personalSkills.id = :id", {id})
             .getOne()
+            if(user) return user
+            throw new PersonalSkillOrUserNotFoundError(PersonalSkillOrUserNotFoundError.defaultMessage)
         } catch(e) {
             console.error(e)
-            return undefined
+            return null
         }
     }
-    return undefined
+    throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
 }
