@@ -16,5 +16,5 @@ export default async function paramTargetImage(req: Request, res: Response) {
         }
         return undefined
     }
-    throw new ImageNotFoundError("Image not found")
+    throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
 }
