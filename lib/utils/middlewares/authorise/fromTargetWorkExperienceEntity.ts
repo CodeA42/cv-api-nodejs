@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import User from "../../../db/Entities/User.Entity"
 import findUserIdFromWorkExperienceId from "../../../db/queries/cv/get/findUserIdFromWorkExperienceId"
-import MissingWorkExperienceEntity from "../../../error/MissingWorkExperienceEntity"
+import MissingWorkExperienceId from "../../../error/MissingWorkExperienceId"
 import WorkExperienceOrUserNotFound from "../../../error/WorkExperienceOrUserNotFound"
 
 export default async function fromTargetWorkExperienceEntity(req: Request, res: Response) {
@@ -16,5 +16,5 @@ export default async function fromTargetWorkExperienceEntity(req: Request, res: 
         }
         return undefined
     }
-    throw new MissingWorkExperienceEntity("Missing work experience entity")
+    throw new MissingWorkExperienceId(MissingWorkExperienceId.defaultMessage)
 }
