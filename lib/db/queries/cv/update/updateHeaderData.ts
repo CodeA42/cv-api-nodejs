@@ -8,9 +8,8 @@ export default async function updateHeaderData(cv: Cv, cvData: Cv, queryRunner: 
     if(cvData.name) cv.name = cvData.name
     if(cvData.email) cv.email = cvData.email
     
-    if(!cv.details){
-        cv.details = new UserDetails()
-    }
+    if(!cv.details) cv.details = new UserDetails()
+
     if(cvData.details) {
         if(cvData.details.address) cv.details.address = cvData.details.address
         if(cvData.details.town) cv.details.town = cvData.details.town
