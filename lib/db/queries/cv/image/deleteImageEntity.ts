@@ -1,6 +1,10 @@
 import { AppDataSource } from "../../..";
+import MissingImageIdError from "../../../../error/MissingImageIdError";
 import Image from "../../../Entities/Image.Entity";
 
 export default async function deleteImageEntity(id: string) {
-    return await AppDataSource.manager.delete(Image, { id })
+    if(id){
+        return await AppDataSource.manager.delete(Image, { id })
+    }
+    throw new MissingImageIdError(MissingImageIdError.defaultMessage)
 }
