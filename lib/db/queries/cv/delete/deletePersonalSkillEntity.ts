@@ -1,7 +1,10 @@
 import { AppDataSource } from "../../.."
+import MissingPersonalSkillIdError from "../../../../error/MissingPersonalSkillIdError"
 import PersonalSkills from "../../../Entities/PersonalSkills.Entity"
 
 export default async function deletePersonalSkillEntity(id: string) {
-    const personalSkillsRepo = AppDataSource.getRepository(PersonalSkills)
-    return await personalSkillsRepo.delete({ id })
+    if(id){
+        return await AppDataSource.manager.delete(PersonalSkills, { id })
+    }
+    throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
 }
