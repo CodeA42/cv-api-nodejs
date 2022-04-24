@@ -9,9 +9,7 @@ export default async function updateWorkData(cv: Cv, cvData: Cv, queryRunner: Qu
         let workExperience = await AppDataSource.manager.findOneBy(WorkExperience, {
             id: e.id
         }).then(data => {
-            if(data) {
-                return data
-            }
+            if(data) return data
             return new WorkExperience()
         }).catch(err => {
             return new WorkExperience()

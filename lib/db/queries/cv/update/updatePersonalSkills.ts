@@ -8,9 +8,7 @@ export default async function updatePersonalSkills(cv: Cv, cvData: Cv, queryRunn
         let personalSkills = await AppDataSource.manager.findOneBy(PersonalSkills, {
             id: e.id
         }).then(data => {
-            if(data) {
-                return data
-            }
+            if(data) return data
             return new PersonalSkills()
         }).catch(err => {
             return new PersonalSkills()

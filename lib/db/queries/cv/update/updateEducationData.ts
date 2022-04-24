@@ -9,9 +9,7 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
         let education = await AppDataSource.manager.findOneBy(Education, {
             id: e.id
         }).then(data => {
-            if(data){
-                return data
-            }
+            if(data) return data
             return new Education()
         }).catch(err => {
             return new Education()
