@@ -11,10 +11,10 @@ export default async function bodyTargetCv(req: Request, res: Response) {
             if(user) return user.id
         } catch(e) {
             if(e instanceof CvOrUserNotFoundError) {
-                return res.sendStatus(404).json({name: e.name})
+                return res.sendStatus(404).json(e.message)
             }
         }
-        return undefined
+        return null
     }
     throw new MissingCvIdError(MissingCvIdError.defaultMessage)
 }
