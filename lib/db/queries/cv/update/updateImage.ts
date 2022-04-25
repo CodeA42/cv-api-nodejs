@@ -8,18 +8,17 @@ import getCvDetailsWithCvId from "../get/getCvDetailsWithCvId"
 import getCvWithDetails from "../get/getCvWithDetails"
 
 export default async function updateImage(cvId: string, avatar: string){
-    if(cvId){
-        let details: UserDetails = await getCvDetailsWithCvId(cvId)
-        
-        if(!details) details = new UserDetails()
-        if(!details.image) details.image = new Image()
-        details.image.avatar = avatar
-        
-        if(details.id) return await AppDataSource.manager.save(details)
+    if(!cvId) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
     
-        const cv: Cv = await getCvWithDetails(cvId)
-        cv.details = details
-        return await AppDataSource.manager.save(cv)
-    }
-    throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    let details: UserDetails = await getCvDetailsWithCvId(cvId)
+    
+    if(!details) details = new UserDetails()
+    if(!details.image) details.image = new Image()
+    details.image.avatar = avatar
+    
+    if(details.id) return await AppDataSource.manager.save(details)
+
+    const cv: Cv = await getCvWithDetails(cvId)
+    cv.details = details
+    return await AppDataSource.manager.save(cv)
 }
