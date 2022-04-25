@@ -11,7 +11,7 @@ export default async function fromTargetEducationEntity(req: Request, res: Respo
             if(user) return user.id
         } catch(e) {
             if(e instanceof EducationOrUserNotFoundError) {
-                return res.status(404).json(EducationOrUserNotFoundError.defaultMessage)
+                return res.status(404).json(e.message)
             }
         }
         return null
