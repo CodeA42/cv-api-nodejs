@@ -7,9 +7,7 @@ export default async function deletePersonalSkill(req: Request, res: Response) {
         await deletePersonalSkillEntity(req.params.id)
         return res.sendStatus(200)
     } catch(e) {
-        if(e instanceof MissingPersonalSkillIdError){
-            return res.status(400).json(MissingPersonalSkillIdError.defaultMessage)
-        }
+        if(e instanceof MissingPersonalSkillIdError) return res.status(400).json(e.message)
         console.error(e)
         return res.sendStatus(500)
     }
