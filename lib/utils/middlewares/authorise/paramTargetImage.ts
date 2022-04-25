@@ -14,7 +14,7 @@ export default async function paramTargetImage(req: Request, res: Response) {
                 return res.sendStatus(404).json(e.message)
             }
         }
-        return undefined
+        return null
     }
     throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
 }
