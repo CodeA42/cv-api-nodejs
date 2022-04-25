@@ -5,16 +5,15 @@ import ImageNotFoundError from "../../../error/ImageNotFoundError";
 import ImageOrUserNotFoundError from "../../../error/ImageOrUserNotFoundError";
 
 export default async function paramTargetImage(req: Request, res: Response) {
-    if(req.params.id){
-        try {
-            const user: User = await findUserIdFromImageId(req.params.id)
-            if(user) return user.id
-        } catch (e) {
-            if(e instanceof ImageOrUserNotFoundError) {
-                return res.sendStatus(404).json(e.message)
-            }
+    if(!req.params.id) throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
+    
+    try {
+        const user: User = await findUserIdFromImageId(req.params.id)
+        if(user) return user.id
+    } catch (e) {
+        if(e instanceof ImageOrUserNotFoundError) {
+            return res.sendStatus(404).json(e.message)
         }
-        return null
     }
-    throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
+    return null
 }
