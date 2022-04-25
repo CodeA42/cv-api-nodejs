@@ -7,9 +7,8 @@ export default async function deleteWorkExperience(req: Request, res: Response) 
         await deleteWorkExperienceEntity(req.params.id)
         return res.sendStatus(200)
     } catch(e) {
-        if(e instanceof MissingWorkExperienceIdError){
-            return res.status(400).json(MissingWorkExperienceIdError.defaultMessage)
-        }
+        if(e instanceof MissingWorkExperienceIdError) return res.status(400).json(e.message)
+        
         console.error(e)
         return res.sendStatus(500)
     }
