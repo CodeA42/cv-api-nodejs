@@ -8,9 +8,8 @@ export default async function createCv(req: Request, res: Response) {
 
         return res.status(200).json(cv.id)
     } catch(e){
-        if(e instanceof CvNotFoundError) {
-            return res.send(400).json(CvNotFoundError.defaultMessage)
-        }
+        if(e instanceof CvNotFoundError) return res.send(400).json(e.message)
+        
         console.error(e)
         return res.sendStatus(500)
     }
