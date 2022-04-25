@@ -5,16 +5,15 @@ import EducationOrUserNotFoundError from "../../../error/EducationOrUserNotFound
 import MissingEducationId from "../../../error/MissingEducationIdError"
 
 export default async function fromTargetEducationEntity(req: Request, res: Response) {
-    if(req.params.id){
-        try{
-            const user: User = await findUserIdFromEducationId(req.params.id)
-            if(user) return user.id
-        } catch(e) {
-            if(e instanceof EducationOrUserNotFoundError) {
-                return res.status(404).json(e.message)
-            }
+    if(!req.params.id) throw new MissingEducationId(MissingEducationId.defaultMessage)
+    
+    try{
+        const user: User = await findUserIdFromEducationId(req.params.id)
+        if(user) return user.id
+    } catch(e) {
+        if(e instanceof EducationOrUserNotFoundError) {
+            return res.status(404).json(e.message)
         }
-        return null
     }
-    throw new MissingEducationId(MissingEducationId.defaultMessage);
+    return null
 }
