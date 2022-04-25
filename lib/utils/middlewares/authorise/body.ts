@@ -1,9 +1,8 @@
-import { Request } from "express";
-import MissingUserIdError from "../../../error/MissingUserIdError";
+import { Request } from "express"
+import MissingUserIdError from "../../../error/MissingUserIdError"
 
 export default function body(req: Request) {
-    if(req.body.userId) {
-        return req.body.userId;
-    }
-    throw new MissingUserIdError(MissingUserIdError.defaultMessage)
+    if(!req.body.userId) throw new MissingUserIdError(MissingUserIdError.defaultMessage)
+    
+    return req.body.userId
 }
