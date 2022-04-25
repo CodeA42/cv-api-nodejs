@@ -4,20 +4,19 @@ import MissingImageIdError from "../../../../error/MissingImageIdError";
 import Image from "../../../Entities/Image.Entity";
 
 export default async function getImageWithId(id: string): Promise<Image | null> {
-    if(id){
-        try {
-            const image: Image = await AppDataSource
-            .manager
-            .createQueryBuilder(Image, "image")
-            .select("image")
-            .where("image.id = :id", { id })
-            .getOne()
-            if(image) return image
-            throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
-        } catch(e) {
-            console.error(e);
-            return null
-        }
+    if(!id) throw new MissingImageIdError(MissingImageIdError.defaultMessage)
+    
+    try {
+        const image: Image = await AppDataSource
+        .manager
+        .createQueryBuilder(Image, "image")
+        .select("image")
+        .where("image.id = :id", { id })
+        .getOne()
+        if(image) return image
+        throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
+    } catch(e) {
+        console.error(e);
+        return null
     }
-    throw new MissingImageIdError(MissingImageIdError.defaultMessage)
 }
