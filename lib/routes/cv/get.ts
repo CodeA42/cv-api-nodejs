@@ -9,7 +9,7 @@ export default async function getCv(req: Request, res: Response) {
         return res.status(200).json(cv)
     } catch(e) {
         if(e instanceof MissingCvIdError){
-            return res.status(400).json(MissingCvIdError.defaultMessage)
+            return res.status(400).json(e.message)
         }
         console.error(e)
         return res.status(500)
