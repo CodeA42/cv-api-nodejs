@@ -7,9 +7,8 @@ export default async function firstTime(req: Request, res: Response) {
         await createUser(res.locals.user.id)
         res.sendStatus(201)
     } catch(e) {
-        if(e instanceof MissingUserIdError){
-            return res.status(400).json(MissingUserIdError.defaultMessage)
-        }
+        if(e instanceof MissingUserIdError) return res.status(400).json(e.message)
+
         console.error(e)
         res.sendStatus(500)
     }
