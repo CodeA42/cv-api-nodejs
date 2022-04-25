@@ -8,7 +8,7 @@ export default async function deleteUserCv(req: Request, res: Response) {
         return res.sendStatus(200)
     } catch(e) {
         if(e instanceof MissingCvIdError){
-            return res.status(400).json(MissingCvIdError.defaultMessage)
+            return res.status(400).json(e.message)
         }
         console.error(e)
         return res.sendStatus(500)
