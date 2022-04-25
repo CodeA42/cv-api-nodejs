@@ -1,4 +1,5 @@
 import { AppDataSource } from "../../.."
+import MissingCvIdError from "../../../../error/MissingCvIdError"
 import Cv from "../../../Entities/Cv.Entity"
 import Education from "../../../Entities/Education.Entity"
 import Experience from "../../../Entities/Experience.Entity"
@@ -6,6 +7,8 @@ import UserDetails from "../../../Entities/UserDetails.Entity"
 import WorkExperience from "../../../Entities/WorkExperience.Entity"
 
 export default async function deleteCv(id: string) {
+    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    
     const cvRepo = AppDataSource.getRepository(Cv)
     const cv: Cv = await cvRepo.findOne({ where: { id }})
 
