@@ -11,10 +11,10 @@ export default async function fromTargetPersonalSkillEntity(req: Request, res: R
             if(user) return user.id
         } catch(e) {
             if(e instanceof ImageOrUserNotFoundError){
-                res.status(404).json({name: e.name})
+                return res.status(404).json(e.message)
             }
         }
-        return undefined
+        return null
     }
     throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
 }
