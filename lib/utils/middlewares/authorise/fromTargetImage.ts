@@ -11,7 +11,7 @@ export default async function fromTargetImage(req: Request, res: Response) {
             if(user) return user.id
         } catch(e) {
             if(e instanceof ImageOrUserNotFoundError) {
-                return res.status(404).json({name: e.name})
+                return res.status(404).json(ImageOrUserNotFoundError.defaultMessage)
             }
         }
         return undefined
