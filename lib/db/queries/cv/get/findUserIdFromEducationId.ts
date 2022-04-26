@@ -17,9 +17,9 @@ export default async function findUserIdFromEducationId(id: string): Promise<Use
         .where("education.id = :id", {id})
         .getOne()
         if(user) return user
-        throw new EducationOrUserNotFoundError(EducationOrUserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new EducationOrUserNotFoundError(EducationOrUserNotFoundError.defaultMessage)
 }
