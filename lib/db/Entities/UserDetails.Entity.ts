@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Cv from "./Cv.Entity";
-import Image from "./Image.Entity";
 import User from "./User.Entity";
 
 @Entity()
@@ -20,11 +19,11 @@ export default class UserDetails {
     })
     cv: Cv
 
-    @OneToOne(type => Image, {
-        cascade: true,
-        onDelete: 'CASCADE'
-    }) @JoinColumn()
-    image: Image
+    @Column({
+        type: 'text',
+        nullable: true
+    })
+    image: string
 
     @Column({
         type: 'text',
