@@ -7,7 +7,7 @@ import prepUserData from "../../utils/middlewares/prepUserData"
 
 const userRouter: Router = Router();  
 userRouter.post('/first-time', userExists, firstTime);
-userRouter.put('/', multer.array('avatar'), prepUserData , updateUser);
+userRouter.put('/', multer.single('image'), prepUserData , updateUser);
 
 userRouter.use("*", (req: Request, res: Response) => {
     res.status(404).json(`Invalid request {${req.originalUrl}}`);
