@@ -1,19 +1,13 @@
 import { Request, Response } from "express"
 import User from "../../../db/Entities/User.Entity"
 import findUserIdFromImageId from "../../../db/queries/cv/image/findUserIdFromImageId"
-import ImageOrUserNotFoundError from "../../../error/ImageOrUserNotFoundError"
 import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdError"
 
 export default async function fromTargetPersonalSkillEntity(req: Request, res: Response) {
-    if(!req.params.id) throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
+    const id: string = req.params.id
+    if(!id) throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
     
-    try {
-        const user: User = await findUserIdFromImageId(req.params.id)
-        if(user) return user.id
-    } catch(e) {
-        if(e instanceof ImageOrUserNotFoundError){
-            return res.status(404).json(e.message)
-        }
-    }
+    const user: User = await findUserIdFromImageId(id)
+    if(user) return user.id
     return null
 }
