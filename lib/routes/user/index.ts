@@ -4,8 +4,6 @@ import updateUser from "./update"
 import userExists from "../../utils/middlewares/userExists"
 import multer from "../../utils/middlewares/multer"
 import prepUserData from "../../utils/middlewares/prepUserData"
-import authenticate from "../../utils/middlewares/authenticateUser"
-
 
 const userRouter: Router = Router();  
 userRouter.post('/first-time', userExists, firstTime);
