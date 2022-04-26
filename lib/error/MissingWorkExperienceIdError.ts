@@ -3,5 +3,7 @@ export default class MissingWorkExperienceIdError extends Error {
     constructor(message: string){
         super(message)
         this.name = "MissingWorkExperienceIdError"
+
+        Object.setPrototypeOf(this, MissingWorkExperienceIdError.prototype)
     }
 }
