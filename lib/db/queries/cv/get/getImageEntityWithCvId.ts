@@ -17,9 +17,9 @@ export default async function getImageEntityWithCvId(id: String): Promise<Image 
         .where("cv.id = :id", { id })
         .getOne()
         if(image) return image
-        throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
     } catch(e){
         console.error(e);
         return null
     }
+    throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
 }
