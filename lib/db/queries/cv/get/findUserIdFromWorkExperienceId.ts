@@ -17,9 +17,9 @@ export default async function findUserIdFromWorkExperienceId(id: string): Promis
         .where("workExperience.id = :id", {id})
         .getOne()
         if(user) return user
-        throw new WorkExperienceOrUserNotFoundError(WorkExperienceOrUserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new WorkExperienceOrUserNotFoundError(WorkExperienceOrUserNotFoundError.defaultMessage)
 }
