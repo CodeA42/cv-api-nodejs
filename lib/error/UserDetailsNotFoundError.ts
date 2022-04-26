@@ -3,5 +3,7 @@ export default class UserDetailsNotFoundError extends Error {
     constructor(message: string){
         super(message)
         this.name = "UserDetailsNotFoundError"
+
+        Object.setPrototypeOf(this, UserDetailsNotFoundError.prototype)
     }
 }
