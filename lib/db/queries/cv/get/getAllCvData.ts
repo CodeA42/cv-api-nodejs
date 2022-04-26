@@ -9,9 +9,9 @@ export default async function getAllCvData(id: string): Promise<Cv | null> {
     try {
         const cv: Cv = await AppDataSource.manager.findOne(Cv, {where: {id}})
         if(cv) return cv
-        throw new CvNotFoundError(CvNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new CvNotFoundError(CvNotFoundError.defaultMessage)
 }
