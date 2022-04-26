@@ -18,9 +18,9 @@ export default async function findUserIdFromImageId(id: string): Promise<User | 
         .where("image.id = :id", { id })
         .getOne()
         if(user) return user
-        throw new ImageOrUserNotFoundError(ImageOrUserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e);
         return null
     }
+    throw new ImageOrUserNotFoundError(ImageOrUserNotFoundError.defaultMessage)
 }
