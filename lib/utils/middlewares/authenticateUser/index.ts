@@ -1,16 +1,16 @@
-import { verify } from "jsonwebtoken";
-import { Request, Response, NextFunction} from "express";
-import { DecodedToken } from "../../../common/types";
+import { verify } from "jsonwebtoken"
+import { Request, Response, NextFunction} from "express"
+import { DecodedToken } from "../../../common/types"
 
-function authenticate(getToken: Function){
+export default function authenticate(getToken: Function){
     return (req: Request, res: Response, next: NextFunction) => {
-        const token = getToken(req);
+        const token = getToken(req)
         
         verify(token, getToken.prototype.tokenSecret, async (err: Error, decoded: DecodedToken) => {
             if(err) return res.sendStatus(403)
             
             if(Math.floor(Date.now() / 1000) > decoded.exp){
-                return res.sendStatus(403);
+                return res.sendStatus(403)
             }
             
             res.locals.user = decoded.user
@@ -18,5 +18,3 @@ function authenticate(getToken: Function){
         })
     }
 }
-
-export default authenticate;
