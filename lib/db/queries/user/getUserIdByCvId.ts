@@ -16,9 +16,9 @@ export default async function getUserIdFromCvId(id: string): Promise<User | null
         .where("cv.id = :id", {id})
         .getOne()
         if(user) return user
-        throw new CvOrUserNotFoundError(CvOrUserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new CvOrUserNotFoundError(CvOrUserNotFoundError.defaultMessage)
 }
