@@ -15,9 +15,9 @@ export default async function getCvWithDetails(id: string): Promise<Cv | null> {
         .leftJoinAndSelect("cv.details","details")
         .getOne()
         if(cv) return cv
-        throw new CvNotFoundError(CvNotFoundError.defaultMessage) 
     } catch(e) {
         console.error(e);
         return null
     }
+    throw new CvNotFoundError(CvNotFoundError.defaultMessage) 
 }
