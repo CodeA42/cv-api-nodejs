@@ -9,9 +9,9 @@ export default async function getUserById(id: string): Promise<User | null>{
     try{
         const user: User = await AppDataSource.manager.findOneBy(User,{ id })
         if(user) return user
-        throw new UserNotFoundError(UserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new UserNotFoundError(UserNotFoundError.defaultMessage)
 }
