@@ -14,9 +14,9 @@ export default async function getImageWithId(id: string): Promise<Image | null> 
         .where("image.id = :id", { id })
         .getOne()
         if(image) return image
-        throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e);
         return null
     }
+    throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
 }
