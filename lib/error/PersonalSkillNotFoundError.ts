@@ -3,5 +3,7 @@ export default class PersonalSkillNotFoundError extends Error {
     constructor(message: string){
         super(message)
         this.name = "PersonalSkillNotFoundError"
+
+        Object.setPrototypeOf(this, PersonalSkillNotFoundError.prototype)
     }
 }
