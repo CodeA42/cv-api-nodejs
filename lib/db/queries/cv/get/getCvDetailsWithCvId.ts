@@ -17,9 +17,9 @@ export default async function getCvDetailsWithCvId(id: String): Promise<UserDeta
         .where("cv.id = :id", { id })
         .getOne()
         if(userDetails) return userDetails
-        throw new UserDetailsNotFoundError(UserDetailsNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new UserDetailsNotFoundError(UserDetailsNotFoundError.defaultMessage)
 }
