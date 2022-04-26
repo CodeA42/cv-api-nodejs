@@ -17,9 +17,9 @@ export default async function findUserIdFromPersonalSkillId(id: string): Promise
         .where("personalSkills.id = :id", {id})
         .getOne()
         if(user) return user
-        throw new PersonalSkillOrUserNotFoundError(PersonalSkillOrUserNotFoundError.defaultMessage)
     } catch(e) {
         console.error(e)
         return null
     }
+    throw new PersonalSkillOrUserNotFoundError(PersonalSkillOrUserNotFoundError.defaultMessage)
 }
