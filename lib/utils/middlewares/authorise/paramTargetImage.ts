@@ -1,19 +1,13 @@
-import { Request, Response } from "express";
-import User from "../../../db/Entities/User.Entity";
-import findUserIdFromImageId from "../../../db/queries/cv/image/findUserIdFromImageId";
-import ImageNotFoundError from "../../../error/ImageNotFoundError";
-import ImageOrUserNotFoundError from "../../../error/ImageOrUserNotFoundError";
+import { Request, Response } from "express"
+import User from "../../../db/Entities/User.Entity"
+import findUserIdFromImageId from "../../../db/queries/cv/image/findUserIdFromImageId"
+import MissingImageIdError from "../../../error/MissingImageIdError"
 
 export default async function paramTargetImage(req: Request, res: Response) {
-    if(!req.params.id) throw new ImageNotFoundError(ImageNotFoundError.defaultMessage)
+    const id: string = req.params.id
+    if(!id) throw new MissingImageIdError(MissingImageIdError.defaultMessage)
     
-    try {
-        const user: User = await findUserIdFromImageId(req.params.id)
-        if(user) return user.id
-    } catch (e) {
-        if(e instanceof ImageOrUserNotFoundError) {
-            return res.sendStatus(404).json(e.message)
-        }
-    }
+    const user: User = await findUserIdFromImageId(id)
+    if(user) return user.id
     return null
 }
