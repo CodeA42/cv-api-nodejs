@@ -7,7 +7,7 @@ import UserDetails from "../../../Entities/UserDetails.Entity"
 import getCvDetailsWithCvId from "../get/getCvDetailsWithCvId"
 
 export default async function deleteCvImage(id: string) {
-    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    if(!id) throw new MissingCvIdError()
 
     try {
         const details: UserDetails = await getCvDetailsWithCvId(id)
@@ -15,7 +15,7 @@ export default async function deleteCvImage(id: string) {
         deleteFileIfExists(path)
     } catch(e) {
         if(e instanceof UserDetailsNotFoundError) {
-            throw new ImageNotFoundError(ImageNotSavedError.defaultMessage)
+            throw new ImageNotFoundError()
         }
     }
     
