@@ -1,15 +1,15 @@
-import { Request, Response } from "express";
-import { Image } from "../../../common/types";
-import getImageWithId from "../../../db/queries/cv/image/getImageWithId";
-import ImageNotFoundError from "../../../error/ImageNotFoundError";
+import { Request, Response } from "express"
+import getImageNameWithCvId from "../../../db/queries/cv/image/getImageNameWithCvId"
+import ImageNotFoundError from "../../../error/ImageNotFoundError"
 
 export default async function getImage(req: Request, res: Response) {
     try {
-        const image: Image = await getImageWithId(req.params.id)
-        return res.status(200).json(image.avatar)
+        const imageName: string = await getImageNameWithCvId(req.params.id)
+        const imagePath: string = `${require.main.path}\\uploads\\${imageName}`
+        return res.sendFile(imagePath)
     } catch (e) {
         if(e instanceof ImageNotFoundError) {
-            return res.sendStatus(404)
+            return res.status(404).json(e.message)
         }
     }
 }
