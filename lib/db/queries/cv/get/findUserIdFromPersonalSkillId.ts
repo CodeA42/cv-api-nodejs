@@ -4,7 +4,7 @@ import PersonalSkillOrUserNotFoundError from "../../../../error/PersonalSkillOrU
 import User from "../../../Entities/User.Entity"
 
 export default async function findUserIdFromPersonalSkillId(id: string): Promise<User | null> {
-    if(!id) throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
+    if(!id) throw new MissingPersonalSkillIdError()
     
     try{
         const user = await AppDataSource
@@ -21,5 +21,5 @@ export default async function findUserIdFromPersonalSkillId(id: string): Promise
         console.error(e)
         return null
     }
-    throw new PersonalSkillOrUserNotFoundError(PersonalSkillOrUserNotFoundError.defaultMessage)
+    throw new PersonalSkillOrUserNotFoundError()
 }
