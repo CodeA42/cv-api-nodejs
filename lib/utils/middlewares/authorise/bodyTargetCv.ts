@@ -5,7 +5,7 @@ import MissingCvIdError from "../../../error/MissingCvIdError"
 
 export default async function bodyTargetCv(req: Request) {
     const id: string = req.body.id
-    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    if(!id) throw new MissingCvIdError()
     
     const user: User = await getUserIdFromCvId(id)
     if(user) return user.id
