@@ -4,7 +4,7 @@ import MissingCvIdError from "../../../error/MissingCvIdError"
 import User from "../../Entities/User.Entity"
 
 export default async function getUserIdFromCvId(id: string): Promise<User | null> {
-    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    if(!id) throw new MissingCvIdError()
     
     try {
         const user: User = await AppDataSource
@@ -20,5 +20,5 @@ export default async function getUserIdFromCvId(id: string): Promise<User | null
         console.error(e)
         return null
     }
-    throw new CvOrUserNotFoundError(CvOrUserNotFoundError.defaultMessage)
+    throw new CvOrUserNotFoundError()
 }
