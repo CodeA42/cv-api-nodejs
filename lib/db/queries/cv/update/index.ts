@@ -19,7 +19,7 @@ export default async function updateCvData(cv: Cv, cvData: Cv){
         await queryRunner.commitTransaction()
         return cv
     } catch(e) {
-        console.error(e);
+        console.error(e)
         await queryRunner.rollbackTransaction()
     }finally {
         await queryRunner.release()

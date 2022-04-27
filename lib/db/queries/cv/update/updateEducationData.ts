@@ -33,10 +33,10 @@ export default async function updateEducationData(cv: Cv, cvData: Cv, queryRunne
                     cv.education[i] = education
                 }
             }
-            return queryRunner.manager.save(cv)
+            cv = await queryRunner.manager.save(cv)
         } else {
             cv.education.push(education)
-            return queryRunner.manager.save(cv)
+            cv = await queryRunner.manager.save(cv)
         }
     }
     return cv

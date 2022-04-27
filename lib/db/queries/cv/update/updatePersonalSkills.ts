@@ -27,10 +27,10 @@ export default async function updatePersonalSkills(cv: Cv, cvData: Cv, queryRunn
                     cv.personalSkills[i] = personalSkills
                 }
             }
-            return queryRunner.manager.save(cv)
+            cv = await queryRunner.manager.save(cv)
         } else {
             cv.personalSkills.push(personalSkills)
-            return queryRunner.manager.save(cv)
+            cv = await  queryRunner.manager.save(cv)
         }
     }
     return cv

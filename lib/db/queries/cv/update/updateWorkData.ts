@@ -39,10 +39,10 @@ export default async function updateWorkData(cv: Cv, cvData: Cv, queryRunner: Qu
                     cv.workExperience[i] = workExperience
                 }
             }
-            return queryRunner.manager.save(cv)
+            cv = await queryRunner.manager.save(cv)
         } else {
             cv.workExperience.push(workExperience)
-            return queryRunner.manager.save(cv)
+            cv = await queryRunner.manager.save(cv)
         }
     }
     return cv
