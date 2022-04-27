@@ -7,6 +7,7 @@ import MissingEducationIdError from "../../../error/MissingEducationIdError";
 import MissingImageIdError from "../../../error/MissingImageIdError";
 import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdError";
 import MissingWorkExperienceIdError from "../../../error/MissingWorkExperienceIdError";
+import PersonalSkillOrUserNotFoundError from "../../../error/PersonalSkillOrUserNotFoundError";
 import WorkExperienceOrUserNotFoundError from "../../../error/WorkExperienceOrUserNotFoundError";
 
 // type return_type = ReturnType<(req: Request, res: Response, next: NextFunction) => Promise<void>>
@@ -37,7 +38,8 @@ export default function authorise(getTarget: Function){
             if( e instanceof CvOrUserNotFoundError ||
                 e instanceof EducationOrUserNotFoundError ||
                 e instanceof ImageOrUserNotFoundError || 
-                e instanceof WorkExperienceOrUserNotFoundError
+                e instanceof WorkExperienceOrUserNotFoundError ||
+                e instanceof PersonalSkillOrUserNotFoundError
             ) return res.status(404).json(e.message)
         }       
     }
