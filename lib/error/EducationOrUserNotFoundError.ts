@@ -1,6 +1,5 @@
 export default class EducationOrUserNotFoundError extends Error {
-    static defaultMessage: string = "Education or user not found"
-    constructor(message: string){
+    constructor(message: string = "Education or user not found"){
         super(message)
         this.name = "EducationOrUserNotFoundError"
     }
