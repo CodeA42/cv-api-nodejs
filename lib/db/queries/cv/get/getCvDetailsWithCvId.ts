@@ -4,7 +4,7 @@ import UserDetailsNotFoundError from "../../../../error/UserDetailsNotFoundError
 import UserDetails from "../../../Entities/UserDetails.Entity"
 
 export default async function getCvDetailsWithCvId(id: String): Promise<UserDetails | null> {
-    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    if(!id) throw new MissingCvIdError()
 
     try{
         const userDetails: UserDetails = await AppDataSource
@@ -20,5 +20,5 @@ export default async function getCvDetailsWithCvId(id: String): Promise<UserDeta
         console.error(e)
         return null
     }
-    throw new UserDetailsNotFoundError(UserDetailsNotFoundError.defaultMessage)
+    throw new UserDetailsNotFoundError()
 }
