@@ -66,7 +66,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
     cvData.type = req.body.type
     cvData.name = req.body.name
     cvData.email = req.body.email
-    cvData.user = req.body.userId
+    cvData.user = req.body.id
     cvData.education = education
     cvData.workExperience = workExperience
     cvData.personalSkills = personalSkills
