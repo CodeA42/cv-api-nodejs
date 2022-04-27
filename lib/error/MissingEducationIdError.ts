@@ -1,6 +1,5 @@
 export default class MissingEducationIdError extends Error {
-    static defaultMessage: string = "Missing education id"
-    constructor(message: string){
+    constructor(message: string = "Missing education id"){
         super(message)
         this.name = "MissingEducationIdError"
     }
