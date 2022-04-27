@@ -9,10 +9,10 @@ export default async function putImage(req: Request, res: Response) {
         const cvId: string = req.body.id
         await updateImage(cvId, image)
     } catch(e) {
-        if(e instanceof MissingCvIdError) return res.status(400).json(MissingCvIdError.defaultMessage)
+        if(e instanceof MissingCvIdError) return res.status(400).json()
         if(e instanceof ImageNotSavedError) return res.sendStatus(500)
         console.error(e)
-        res.sendStatus(500)
+        return res.sendStatus(500)
     }
 
     res.sendStatus(200)
