@@ -1,6 +1,5 @@
 export default class MissingPersonalSkillIdError extends Error {
-    static defaultMessage: string = "Missing personal skill id"
-    constructor(message: string){
+    constructor(message: string = "Missing personal skill id"){
         super(message)
         this.name = "MissingPersonalSkillIdError"
     }
