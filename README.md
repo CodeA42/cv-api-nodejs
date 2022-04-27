@@ -10,6 +10,8 @@ PORT=
 ACCESS_TOKEN_SECRET=
 ```
 
+Access token secret should be the same as the auth server
+
 ## db
 
 ### Create "db.connection.json" in config folder and fill will following fields
