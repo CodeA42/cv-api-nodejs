@@ -4,7 +4,7 @@ import MissingCvIdError from "../../../../error/MissingCvIdError"
 import Cv from "../../../Entities/Cv.Entity"
 
 export default async function getCvWithDetails(id: string): Promise<Cv | null> {
-    if(!id) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
+    if(!id) throw new MissingCvIdError()
     
     try{
         const cv: Cv = await AppDataSource
@@ -19,5 +19,5 @@ export default async function getCvWithDetails(id: string): Promise<Cv | null> {
         console.error(e);
         return null
     }
-    throw new CvNotFoundError(CvNotFoundError.defaultMessage) 
+    throw new CvNotFoundError() 
 }
