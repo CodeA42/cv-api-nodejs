@@ -1,6 +1,5 @@
 export default class PersonalSkillOrUserNotFoundError extends Error {
-    static defaultMessage: string = "Personal skill or user not found"
-    constructor(message: string){
+    constructor(message: string = "Personal skill or user not found"){
         super(message)
         this.name = "PersonalSkillOrUserNotFoundError"
     }
