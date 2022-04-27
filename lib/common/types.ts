@@ -97,5 +97,5 @@ export type WorkExperienceBodyData = {
 export type PersonalSkillsBodyData = {
     id: string | undefined,
     name: string | undefined,
-    level: number | undefined
+    level: number | string | undefined
 }
