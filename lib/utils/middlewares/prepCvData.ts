@@ -48,7 +48,13 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
         personalSkills[i] = new PersonalSkills()
         personalSkills[i].id = e.id
         personalSkills[i].name = e.name
-        if(e.level === 1 || e.level === 2 || e.level === 3 || e.level === 4 || e.level === 5) personalSkills[i].level = e.level
+        if( e.level.toString() === "1"|| 
+            e.level.toString() === "2" ||
+            e.level.toString() === "3" || 
+            e.level.toString() === "4" || 
+            e.level.toString() === "5") {
+            personalSkills[i].level = Number(e.level)
+        }
     })
     
     const cvData: Cv = new Cv()
