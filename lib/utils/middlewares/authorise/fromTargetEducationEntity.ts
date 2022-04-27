@@ -5,7 +5,7 @@ import MissingEducationId from "../../../error/MissingEducationIdError"
 
 export default async function fromTargetEducationEntity(req: Request) {
     const id: string = req.params.id
-    if(!id) throw new MissingEducationId(MissingEducationId.defaultMessage)
+    if(!id) throw new MissingEducationId()
     
     const user: User = await findUserIdFromEducationId(id)
     if(user) return user.id
