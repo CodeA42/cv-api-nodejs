@@ -4,7 +4,7 @@ import MissingEducationIdError from "../../../../error/MissingEducationIdError"
 import User from "../../../Entities/User.Entity"
 
 export default async function findUserIdFromEducationId(id: string): Promise<User | null> {
-    if(!id) throw new MissingEducationIdError(MissingEducationIdError.defaultMessage)
+    if(!id) throw new MissingEducationIdError()
     
     try{
         const user: User = await AppDataSource
@@ -21,5 +21,5 @@ export default async function findUserIdFromEducationId(id: string): Promise<Use
         console.error(e)
         return null
     }
-    throw new EducationOrUserNotFoundError(EducationOrUserNotFoundError.defaultMessage)
+    throw new EducationOrUserNotFoundError()
 }
