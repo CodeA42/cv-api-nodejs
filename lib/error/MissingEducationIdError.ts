@@ -3,7 +3,5 @@ export default class MissingEducationIdError extends Error {
     constructor(message: string){
         super(message)
         this.name = "MissingEducationIdError"
-
-        Object.setPrototypeOf(this, MissingEducationIdError.prototype)
     }
 }

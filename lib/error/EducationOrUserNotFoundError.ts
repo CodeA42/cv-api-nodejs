@@ -3,7 +3,5 @@ export default class EducationOrUserNotFoundError extends Error {
     constructor(message: string){
         super(message)
         this.name = "EducationOrUserNotFoundError"
-
-        Object.setPrototypeOf(this, EducationOrUserNotFoundError.prototype)
     }
 }

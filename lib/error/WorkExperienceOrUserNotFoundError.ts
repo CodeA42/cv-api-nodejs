@@ -3,7 +3,5 @@ export default class WorkExperienceOrUserNotFoundError extends Error {
     constructor(message: string){
         super(message)
         this.name = "WorkExperienceOrUserNotFoundError"
-
-        Object.setPrototypeOf(this, WorkExperienceOrUserNotFoundError.prototype)
     }
 }
