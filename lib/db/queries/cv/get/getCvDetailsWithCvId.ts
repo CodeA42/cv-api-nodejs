@@ -13,7 +13,6 @@ export default async function getCvDetailsWithCvId(id: String): Promise<UserDeta
         .from(UserDetails, "details")
         .select("details")
         .leftJoin("details.cv", "cv")
-        .leftJoinAndSelect("details.image", "image")
         .where("cv.id = :id", { id })
         .getOne()
         if(userDetails) return userDetails
