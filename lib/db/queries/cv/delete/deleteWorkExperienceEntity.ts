@@ -3,7 +3,7 @@ import MissingWorkExperienceIdError from "../../../../error/MissingWorkExperienc
 import WorkExperience from "../../../Entities/WorkExperience.Entity"
 
 export default async function deleteWorkExperienceEntity(id: string) {
-    if(!id) throw new MissingWorkExperienceIdError(MissingWorkExperienceIdError.defaultMessage)
+    if(!id) throw new MissingWorkExperienceIdError()
     
     return await AppDataSource.manager.delete(WorkExperience, { id })
 }
