@@ -4,7 +4,7 @@ import UserNotFoundError from "../../../error/UserNotFoundError"
 import User from "../../Entities/User.Entity"
 
 export default async function getUserById(id: string): Promise<User | null>{
-    if(!id) throw new MissingUserIdError(MissingUserIdError.defaultMessage)
+    if(!id) throw new MissingUserIdError()
     
     try{
         const user: User = await AppDataSource.manager.findOneBy(User,{ id })
@@ -13,5 +13,5 @@ export default async function getUserById(id: string): Promise<User | null>{
         console.error(e)
         return null
     }
-    throw new UserNotFoundError(UserNotFoundError.defaultMessage)
+    throw new UserNotFoundError()
 }
