@@ -1,6 +1,5 @@
 export default class WorkExperienceOrUserNotFoundError extends Error {
-    static defaultMessage: string = "Work experience or user not found"
-    constructor(message: string){
+    constructor(message: string = "Work experience or user not found"){
         super(message)
         this.name = "WorkExperienceOrUserNotFoundError"
     }
