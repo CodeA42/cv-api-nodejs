@@ -10,8 +10,8 @@ import getCvWithDetails from "../get/getCvWithDetails"
 import deleteFileIfExists from "../../../../utils/deleteFileIfExists"
 
 export default async function updateImage(cvId: string, image: string){
-    if(!cvId) throw new MissingCvIdError(MissingCvIdError.defaultMessage)
-    if(!image) throw new MissingImageError(MissingImageError.defaultMessage)
+    if(!cvId) throw new MissingCvIdError()
+    if(!image) throw new MissingImageError()
 
 
     let details: UserDetails
@@ -23,7 +23,7 @@ export default async function updateImage(cvId: string, image: string){
         if(e instanceof UserDetailsNotFoundError) details = new UserDetails()
         else {
             console.error(e)
-            throw new ImageNotSavedError(ImageNotSavedError.defaultMessage)
+            throw new ImageNotSavedError()
         }
     }
 
