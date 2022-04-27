@@ -6,10 +6,10 @@ import User from "../../Entities/User.Entity"
 import UserDetails from "../../Entities/UserDetails.Entity"
 
 export default async function updateUserData(userData: UserData): Promise<User | null>{
-    if(!userData.id) throw new MissingUserIdError(MissingUserIdError.defaultMessage)
+    if(!userData.id) throw new MissingUserIdError()
     
     const user = await AppDataSource.manager.findOneBy(User, {id: userData.id})
-    if(!user) throw new UserNotFoundError(UserNotFoundError.defaultMessage)
+    if(!user) throw new UserNotFoundError()
 
     if(userData.firstName)              user.firstName = userData.firstName
     if(userData.lastName)               user.lastName = userData.lastName
