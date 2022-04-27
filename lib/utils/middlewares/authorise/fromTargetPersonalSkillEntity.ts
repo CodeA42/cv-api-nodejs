@@ -5,7 +5,7 @@ import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdEr
 
 export default async function fromTargetPersonalSkillEntity(req: Request) {
     const id: string = req.params.id
-    if(!id) throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
+    if(!id) throw new MissingPersonalSkillIdError()
     
     const user: User = await findUserIdFromPersonalSkillId(id)
     if(user) return user.id
