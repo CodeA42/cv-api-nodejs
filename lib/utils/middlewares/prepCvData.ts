@@ -21,7 +21,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
 
         education[i] = new Education()
         education[i].id = e.id
-        education[i].type = e.type
+        if(e.type === "Institution" || e.type === "Course") education[i].type = e.type
         education[i].experience = experience
     })
     
@@ -38,7 +38,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
 
         workExperience[i] = new WorkExperience()
         workExperience[i].id = e.id
-        workExperience[i].type = e.type
+        if(e.type === "professional" || e.type === "voluntary") workExperience[i].type = e.type
         workExperience[i].jobTitle = e.jobTitle
         workExperience[i].experience = experience
     })
@@ -48,7 +48,7 @@ export default function prepCvData(req: Request, res: Response, next: NextFuncti
         personalSkills[i] = new PersonalSkills()
         personalSkills[i].id = e.id
         personalSkills[i].name = e.name
-        personalSkills[i].level = e.level
+        if(e.level === 1 || e.level === 2 || e.level === 3 || e.level === 4 || e.level === 5) personalSkills[i].level = e.level
     })
     
     const cvData: Cv = new Cv()
