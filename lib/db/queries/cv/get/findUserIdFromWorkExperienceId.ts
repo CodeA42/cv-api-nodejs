@@ -4,7 +4,7 @@ import WorkExperienceOrUserNotFoundError from "../../../../error/WorkExperienceO
 import User from "../../../Entities/User.Entity"
 
 export default async function findUserIdFromWorkExperienceId(id: string): Promise<User | null> {
-    if(!id) throw new MissingWorkExperienceIdError(MissingWorkExperienceIdError.defaultMessage)
+    if(!id) throw new MissingWorkExperienceIdError()
     
     try{
         const user: User = await AppDataSource
@@ -21,5 +21,5 @@ export default async function findUserIdFromWorkExperienceId(id: string): Promis
         console.error(e)
         return null
     }
-    throw new WorkExperienceOrUserNotFoundError(WorkExperienceOrUserNotFoundError.defaultMessage)
+    throw new WorkExperienceOrUserNotFoundError()
 }
