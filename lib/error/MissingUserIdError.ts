@@ -1,6 +1,5 @@
 export default class MissingUserIdError extends Error {
-    static defaultMessage: string = "Missing user id"
-    constructor(message: string){
+    constructor(message: string = "Missing user id"){
         super(message)
         this.name = "MissingUserIdError"
     }
