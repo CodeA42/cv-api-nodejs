@@ -1,14 +1,12 @@
-import { NextFunction, Request, Response } from "express";
-import CvOrUserNotFoundError from "../../../error/CvOrUserNotFoundError";
-import EducationOrUserNotFoundError from "../../../error/EducationOrUserNotFoundError";
-import ImageOrUserNotFoundError from "../../../error/ImageOrUserNotFoundError";
-import MissingCvIdError from "../../../error/MissingCvIdError";
-import MissingEducationIdError from "../../../error/MissingEducationIdError";
-import MissingImageIdError from "../../../error/MissingImageIdError";
-import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdError";
-import MissingWorkExperienceIdError from "../../../error/MissingWorkExperienceIdError";
-import PersonalSkillOrUserNotFoundError from "../../../error/PersonalSkillOrUserNotFoundError";
-import WorkExperienceOrUserNotFoundError from "../../../error/WorkExperienceOrUserNotFoundError";
+import { NextFunction, Request, Response } from "express"
+import CvOrUserNotFoundError from "../../../error/CvOrUserNotFoundError"
+import EducationOrUserNotFoundError from "../../../error/EducationOrUserNotFoundError"
+import MissingCvIdError from "../../../error/MissingCvIdError"
+import MissingEducationIdError from "../../../error/MissingEducationIdError"
+import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdError"
+import MissingWorkExperienceIdError from "../../../error/MissingWorkExperienceIdError"
+import PersonalSkillOrUserNotFoundError from "../../../error/PersonalSkillOrUserNotFoundError"
+import WorkExperienceOrUserNotFoundError from "../../../error/WorkExperienceOrUserNotFoundError"
 
 // type return_type = ReturnType<(req: Request, res: Response, next: NextFunction) => Promise<void>>
 
@@ -30,14 +28,12 @@ export default function authorise(getTarget: Function){
         } catch(e) {
             if( e instanceof MissingCvIdError ||
                 e instanceof MissingEducationIdError ||
-                e instanceof MissingImageIdError ||
                 e instanceof MissingPersonalSkillIdError ||
                 e instanceof MissingWorkExperienceIdError
             ) return res.status(400).json(e.message)
 
             if( e instanceof CvOrUserNotFoundError ||
                 e instanceof EducationOrUserNotFoundError ||
-                e instanceof ImageOrUserNotFoundError || 
                 e instanceof WorkExperienceOrUserNotFoundError ||
                 e instanceof PersonalSkillOrUserNotFoundError
             ) return res.status(404).json(e.message)
