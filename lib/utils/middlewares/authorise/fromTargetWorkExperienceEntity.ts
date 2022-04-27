@@ -5,7 +5,7 @@ import MissingWorkExperienceIdError from "../../../error/MissingWorkExperienceId
 
 export default async function fromTargetWorkExperienceEntity(req: Request) {
     const id: string = req.params.id
-    if(!id) throw new MissingWorkExperienceIdError(MissingWorkExperienceIdError.defaultMessage)
+    if(!id) throw new MissingWorkExperienceIdError()
 
     const user: User = await findUserIdFromWorkExperienceId(id)
     if(user) return user.id
