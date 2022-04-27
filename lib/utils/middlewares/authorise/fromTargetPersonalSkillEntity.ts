@@ -1,9 +1,9 @@
-import { Request, Response } from "express"
+import { Request } from "express"
 import User from "../../../db/Entities/User.Entity"
 import findUserIdFromPersonalSkillId from "../../../db/queries/cv/get/findUserIdFromPersonalSkillId"
 import MissingPersonalSkillIdError from "../../../error/MissingPersonalSkillIdError"
 
-export default async function fromTargetPersonalSkillEntity(req: Request, res: Response) {
+export default async function fromTargetPersonalSkillEntity(req: Request) {
     const id: string = req.params.id
     if(!id) throw new MissingPersonalSkillIdError(MissingPersonalSkillIdError.defaultMessage)
     

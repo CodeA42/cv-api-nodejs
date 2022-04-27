@@ -13,7 +13,7 @@ import WorkExperienceOrUserNotFoundError from "../../../error/WorkExperienceOrUs
 export default function authorise(getTarget: Function){
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const target: string = await getTarget(req, res)
+            const target: string = await getTarget(req)
 
             if(!target) return res.status(401).json('user not found')
             
