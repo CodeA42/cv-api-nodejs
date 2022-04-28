@@ -14,15 +14,17 @@ Access token secret should be the same as the auth server
 
 ## db
 
+### Create a databaase and user with the rights to work on the database
+
 ### Create "db.connection.json" in config folder and fill will following fields
 
 ```
 {
-    "host": "localhost",
-    "port": 5432,
-    "username": "cvapiuser",
-    "password": "supersafepassword",
-    "database": "cvapi"
+    "host": "",
+    "port": ,
+    "username": "",
+    "password": "",
+    "database": ""
 }
 ```
 
